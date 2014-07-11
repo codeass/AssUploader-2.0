@@ -1,4 +1,150 @@
-AssUploader-2.0
-===============
+/*
+ * jQuery AssFileUploader : File Upload Plugin 1.0
+ * https://github.com/codeass/AssUploader
+ *
+ * Copyright 2014, Kamran Wajdani
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
 
-jQuery File Upload widget with progress bar, upload speed, elapsed &amp; remaining time for jQuery.
+/* Then animate the stuff */
+@-webkit-keyframes load { 
+    0% { width: 0% ;
+		background-position:0 0;}
+    100% { width: 100%;
+			background-position:-40px 0;
+			}
+}
+@-ms-keyframes load { 
+   0% { width: 0% ;
+		background-position:0 0;}
+    100% { width: 100%;
+			background-position:-40px 0;
+			}
+}
+@-o-keyframes load { 
+    0% { width: 0% ;
+		background-position:0 0;}
+    100% { width: 100%;
+			background-position:-40px 0;
+			}
+}
+@keyframes load { 
+  0% { width: 0% ;
+		background-position:0 0;}
+    100% { width: 100%;
+			background-position:-40px 0;
+			}
+}
+
+.scrollbar::-webkit-scrollbar {width: 10px;height: 12px;background:#f1f1f1;}
+.scrollbar::-webkit-scrollbar-thumb {background-color: rgba(0, 0, 0, 0.2);-webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.10),inset 0 -1px 0 rgba(0, 0, 0, 0.07);}
+.scrollbar::-webkit-scrollbar-button {width: 0;height: 0;display: none;}
+.scrollbar::-webkit-scrollbar-corner {background-color: transparent;}
+.AssBG{
+	background-repeat: repeat-x;
+	background-position: 0 0;
+	-webkit-background-size: 16px 11px;
+	-moz-background-size: 16px 11px;
+	-o-background-size: 16px 11px;
+	background-size: 16px 11px;
+	background-image: -webkit-linear-gradient(315deg,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0) 33%,rgba(0, 0, 0, 0.12) 33%,rgba(0, 0, 0, 0.12) 66%,rgba(0, 0, 0, 0) 66%,rgba(0, 0, 0, 0));
+	background-image: -moz-linear-gradient(315deg,transparent,transparent 33%,rgba(0, 0, 0, 0.12) 33%,rgba(0, 0, 0, 0.12) 66%,transparent 66%,transparent);
+	background-image: -o-linear-gradient(315deg,transparent,transparent 33%,rgba(0, 0, 0, 0.12) 33%,rgba(0, 0, 0, 0.12) 66%,transparent 66%,transparent);
+	background-image: linear-gradient(315deg,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0) 33%,rgba(0, 0, 0, 0.12) 33%,rgba(0, 0, 0, 0.12) 66%,rgba(0, 0, 0, 0) 66%,rgba(0, 0, 0, 0));
+}
+.AssBGAnimate{
+	-webkit-animation: load 2s linear 0;
+	-moz-animation: load 2s linear 0;
+	-ms-animation: load 2s linear 0;
+	-o-animation: load 2s linear 0;
+	animation: load 2s linear 0;
+}
+.AssUploadBox{
+	position:fixed;
+	right:0px;
+	bottom:-318px;
+	left:0px;
+	background:#ffffff;
+	border-top:4px #ddd solid;
+	height:350px;
+	font-family: sans-serif, arial, tahoma;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.AssUploadBox .AssUploadBoxHead{
+	padding: 8px 12px;
+	border-bottom: 1px #DDD solid;
+}
+.AssUploadBox .AssUploadBoxHead .AssUploadBoxHeadTitle{
+	font-weight: bold;
+}
+.AssUploadBox .AssUploadBoxHead .AssUploadBoxHeadOptions{
+	position: absolute;
+	right: 10px;
+	top: 4px;
+}
+.AssUploadBox .AssUploadBoxHead .AssUploadBoxHeadOptions a#ShowHideAssUploadBox{
+	display: inline-block;
+	padding: 10px 8px 3px 8px;
+	border-radius: 2px;
+}
+.AssUploadBox .AssUploadBoxHead .AssUploadBoxHeadOptions a#ShowHideAssUploadBox:hover{
+	background: #DDD;text-decoration:none;
+}
+.AssUploadBox .AssUploadBoxHead .AssUploadBoxHeadOptions a#ShowHideAssUploadBox div{
+	display:inline-block;width:0px;height:0px;border:5px rgba(0,0,0,0) solid;vertical-align:bottom;
+}
+.AssUploadBox .AssUploadBoxHead .AssUploadBoxHeadOptions a#ShowHideAssUploadBox div.closed{
+	border-top:7px #333 solid;
+}
+.AssUploadBox .AssUploadBoxHead .AssUploadBoxHeadOptions a#ShowHideAssUploadBox div.open{
+	border-bottom:7px #333 solid;
+}
+.AssUploadBox ol.AssUploadBoxFilesList{
+	margin:0;
+	padding:0
+	list-style:none;
+}
+.AssUploadBox ol.AssUploadBoxFilesList li#AssUploadBoxFilesListHead{
+	background: #E7E7E7;
+	padding: 0px 10px;
+	border-bottom:0px;
+}
+.AssUploadBox ol.AssUploadBoxFilesListFiles li, .AssUploadBox ol.AssUploadBoxFilesList li{
+	padding: 0px 10px;
+	border-bottom:1px #e2e2e2 solid;
+}
+.AssUploadBox ol.AssUploadBoxFilesListFiles li table, .AssUploadBox ol.AssUploadBoxFilesList li table{
+	font-size:13px;
+}
+.AssUploadBox ol.AssUploadBoxFilesList li#AssUploadBoxFilesListHead table th{
+	border-right: 2px #FFF solid;
+	padding: 7px 0px;
+	color: #777;
+	font-size: 12px;
+	font-weight: bold;
+}
+.AssUploadBox ol.AssUploadBoxFilesListFiles li table th, .AssUploadBox ol.AssUploadBoxFilesList li table th{
+	border-right: 2px rgba(0,0,0,0) solid;
+	padding: 7px 0px;
+	color: #333;
+	font-size: 12px;
+}
+.AssUploadBox .AssProgressBar{
+	background: #E7E7E7;
+	height: 10px;
+	overflow: hidden;
+	margin: 0px 8px;
+}
+.AssUploadBox .AssProgressBar .AssBar{
+	height: 26px;
+	background-color: #09F;
+	width: 0%;
+}
+ol.AssUploadBoxFilesListFiles{
+	height:288px;
+	overflow-x:hidden;
+	overflow-y:auto;
+}
