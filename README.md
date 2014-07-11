@@ -9,16 +9,16 @@ How to Use
 ==========
 
 1. Add HTML DIV element
-<div id="assuploader" style="margin:10px;"></div>	
+<pre><div id="assuploader" style="margin:10px;"></div></pre>
 
 2. Add jQuery Reference
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+<pre><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script></pre>
 
 3. Add assuploader.js reference
-<script src="assuploader.js"></script>
+<pre><script src="assuploader.js"></script></pre>
 
 4. Now Initialize the AssUploader Plugin
-<script>
+<pre><script>
 $(document).ready(function(){
 	if($("#assuploader").size()>0){
 		$("#assuploader").assuploader({
@@ -33,3 +33,4 @@ $(document).ready(function(){
 	}
 });
 </script>
+</pre>
