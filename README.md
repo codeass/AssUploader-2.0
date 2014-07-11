@@ -8,17 +8,12 @@ jQuery File Upload widget with progress bar, upload speed, elapsed &amp; remaini
 How to Use
 ==========
 
-1. Add HTML DIV element
-<pre><div id="assuploader" style="margin:10px;"></div></pre>
-
+1. Add HTML DIV element with id "assuploader"
 2. Add jQuery Reference
-<pre><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script></pre>
-
 3. Add assuploader.js reference
-<pre><script src="assuploader.js"></script></pre>
 
 4. Now Initialize the AssUploader Plugin
-<pre><script>
+<pre>
 $(document).ready(function(){
 	if($("#assuploader").size()>0){
 		$("#assuploader").assuploader({
@@ -32,5 +27,7 @@ $(document).ready(function(){
 		});
 	}
 });
-</script>
 </pre>
+
+Here you go...<br />
+by: <b>Kamran Wajdani</b>
